@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .verification-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+        }
+        .verification-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .verification-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .otp-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .otp-container input {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .verification-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .verification-container button:hover {
+            background-color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <h2>Number Verification</h2>
+        <p id="phone-display">Phone Number: +1234567890</p>
+        <form id="verifyForm">
+            <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+            </div>
+            <button type="submit">Verify</button>
+        </form>
+    </div>
+    <script>
+        // Focus automatically shifts to the next OTP input
+        const otpDigits = document.querySelectorAll(".otp-digit");
+
+        otpDigits.forEach((digit, idx) => {
+            digit.addEventListener("input", (e) => {
+                if (e.target.value.length === 1 && idx < otpDigits.length - 1) {
+                    otpDigits[idx + 1].focus();
+                }
+            });
+
+            digit.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && e.target.value === "" && idx > 0) {
+                    otpDigits[idx - 1].focus();
+                }
+            });
+        });
+
+        // OTP form submission
+        document.getElementById("verifyForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const otp = Array.from(otpDigits).map((digit) => digit.value).join("");
+
+            if (otp.length === 6) {
+                alert(`Entered OTP: ${otp}`);
+                // Perform verification here
+            } else {
+                alert("Please enter all 6 digits.");
+            }
+        });
+    </script>
+</body>
+</html>

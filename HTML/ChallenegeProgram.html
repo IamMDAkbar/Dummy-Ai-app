@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .question {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .feedback-container {
+            margin-top: 15px;
+            padding: 10px;
+            background: #333;
+            color: lightblue;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 16px;
+        }
+        /* Modal Styling */
+        .modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Difficulty & Language Selection Modal -->
+    <div class="modal" id="difficultyModal">
+        <div class="modal-content">
+            <h2>Select Challenge Options</h2>
+            <label>Difficulty:</label>
+            <select id="difficultySelect">
+                <option value="easy">Easy</option>
+                <option value="normal">Normal</option>
+                <option value="hardcore">Hardcore</option>
+            </select>
+
+            <label>Programming Language:</label>
+            <select id="languageSelect">
+                <option value="C">C</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="XML">XML</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="C++">C++</option>
+                <option value="SQL">SQL</option>
+                <option value="Kotlin">Kotlin</option>
+                <option value="Dart">Dart</option>
+            </select>
+
+            <button onclick="startChallenge()">Start</button>
+        </div>
+    </div>
+
+    <!-- Main Challenge Container -->
+    <div class="container">
+        <h1>Programming Challenge - APeS</h1>
+        <p class="question">Loading question...</p>
+        <textarea id="codeInput" placeholder="Write your program here..."></textarea>
+        
+        <div class="buttons">
+            <button onclick="showSolution()">Solution</button>
+            <button onclick="checkAnswer()">Check</button>
+            <button onclick="getQuestion()">Next</button>
+        </div>
+
+        <div id="feedback" class="feedback-container"></div>
+    </div>
+
+    <script>
+        const apiKey = "AIzaSyCybGo8JyqFtDjIX1q7rMSxbss4vck5Bkc";  // Replace with actual API key
+        const modelUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        let difficulty = "normal";
+        let language = "C";
+        let correctSolution = "";
+
+        // Show Modal on Page Load
+        window.onload = function() {
+            document.getElementById("difficultyModal").style.display = "flex";
+        };
+
+        // Start the Challenge
+        function startChallenge() {
+            difficulty = document.getElementById("difficultySelect").value;
+            language = document.getElementById("languageSelect").value;
+            document.getElementById("difficultyModal").style.display = "none";
+            getQuestion();
+        }
+
+        async function getQuestion() {
+            document.querySelector(".question").innerText = "Generating question...";
+            document.getElementById("feedback").innerText = "";
+            document.getElementById("codeInput").value = "";
+
+            const prompt = `Generate a ${difficulty} level programming and remove *** from the question,unique every time, challenge in ${language}. Format:
+                Question: (your question here)
+                Solution: (correct ${language} program here)`;
+
+            try {
+                const response = await fetch(modelUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                const data = await response.json();
+                const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Error fetching question.";
+
+                let match = text.match(/Question:\s*(.*)/);
+                let solutionMatch = text.match(/Solution:\s*([\s\S]*)/);
+
+                let questionText = match ? match[1].trim() : "Error extracting question.";
+                correctSolution = solutionMatch ? solutionMatch[1].trim() : "No solution available.";
+
+                document.querySelector(".question").innerText = questionText;
+            } catch (error) {
+                document.querySelector(".question").innerText = "Error loading question.";
+            }
+        }
+
+        async function checkAnswer() {
+            let userCode = document.getElementById("codeInput").value.trim();
+            let feedbackEl = document.getElementById("feedback");
+
+            if (userCode === "") {
+                feedbackEl.innerText = "❌ Please enter your code!";
+                return;
+            }
+
+            feedbackEl.innerText = "Checking...";
+            const prompt = `Evaluate the following ${difficulty} level ${language} program. Provide feedback:\n\n${userCode}`;
+
+            try {
+                const response = await fetch(modelUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const feedbackText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Error generating feedback.";
+                feedbackEl.innerText = feedbackText;
+            } catch (error) {
+                feedbackEl.innerText = `Error checking the code: ${error.message}`;
+            }
+        }
+
+        function showSolution() {
+            document.getElementById("feedback").innerText = "✅ Correct Solution:\n" + correctSolution;
+        }
+    </script>
+</body>
+</html>

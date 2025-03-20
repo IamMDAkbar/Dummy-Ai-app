@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+        .profile-header img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #ddd;
+            cursor: pointer;
+        }
+        .profile-header input[type="file"] {
+            display: none;
+        }
+        .profile-header label {
+            cursor: pointer;
+            background-color: #FFA500;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .profile-header h2 {
+            font-size: 28px;
+            color: #333;
+            margin: 0;
+            position: relative;
+        }
+        .profile-header h2 .edit-icon {
+            font-size: 18px;
+            color: #FFA500;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 20px; /* Space between boxes */
+            margin-bottom: 30px;
+        }
+        .profile-detail-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .profile-detail-box h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+        }
+        .profile-detail-box p {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+            position: relative;
+        }
+        .profile-detail-box input[type="text"], 
+        .profile-detail-box input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+        .profile-detail-box .edit-icon {
+            font-size: 16px;
+            color: #FFA500;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .profile-detail-box.editing .edit-icon {
+            color: #28a745; /* Green for save icon */
+        }
+        .profile-detail-box.editing p {
+            display: none;
+        }
+        .profile-detail-box.editing input {
+            display: block;
+        }
+        .profile-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+        .profile-actions button {
+            background-color: #FFA500;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .profile-actions button:hover {
+            background-color: #FF8C00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" alt="User Profile Picture" id="profile-pic">
+            <label for="profile-pic-input">Change Picture</label>
+            <input type="file" id="profile-pic-input" accept="image/*">
+            <h2>
+                <span contenteditable="true" id="profile-name">MD AKBAR 🗿</span>
+                <span class="edit-icon">&#9998;</span>
+            </h2>
+        </div>
+
+        <div class="profile-details">
+            <div class="profile-detail-box">
+                <h3>Akady Name</h3>
+                <p>Legendary King</p>
+                <input type="text" value="Legendary King">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Phone</h3>
+                <p>+1 234 567 890</p>
+                <input type="text" value="+1 234 567 890">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Email</h3>
+                <p>akbar.taupheek@akady.com</p>
+                <input type="email" value="akbar.taupheek@akady.com">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Description</h3>
+                <p>Passionate about coding and building innovative web applications.</p>
+                <input type="text" value="Passionate about coding and building innovative web applications.">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Favorite Language</h3>
+                <p>JavaScript</p>
+                <input type="text" value="JavaScript">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Hobby</h3>
+                <p>Solving Puzzles</p>
+                <input type="text" value="Solving Puzzles">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Location</h3>
+                <p>San Francisco</p>
+                <input type="text" value="San Francisco">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+            <div class="profile-detail-box">
+                <h3>Experience</h3>
+                <p>5 Years in Web Development</p>
+                <input type="text" value="5 Years in Web Development">
+                <span class="edit-icon">&#9998;</span>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button id="save-btn">Save Changes</button>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle profile picture change
+        const profilePicInput = document.getElementById('profile-pic-input');
+        const profilePic = document.getElementById('profile-pic');
+
+        profilePicInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle edit and save functionality for each detail box
+        document.querySelectorAll('.edit-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const parentBox = icon.closest('.profile-detail-box');
+                const isEditing = parentBox.classList.toggle('editing');
+                icon.innerHTML = isEditing ? '&#10003;' : '&#9998;'; // Toggle between save (checkmark) and edit (pencil)
+            });
+        });
+
+        // Save and Cancel buttons
+        document.getElementById('save-btn').addEventListener('click', () => {
+            alert('All changes saved successfully!');
+        });
+
+        document.getElementById('cancel-btn').addEventListener('click', () => {
+            location.reload();
+        });
+    </script>
+</body>
+</html>

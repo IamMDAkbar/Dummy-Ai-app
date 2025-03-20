@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up to Akady</title>
+    <script src="SignUp.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .signup-container input {
+            width: 94%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .signup-container button:hover {
+            background-color: #5b52cc;
+        }
+        .signup-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .signup-container p a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+        .signup-container p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="c:\Akady\SampleVideos\sample6.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+        <form id="signupForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="LogInterface.html">Log In</a></p>
+    </div>
+</body>
+</html>

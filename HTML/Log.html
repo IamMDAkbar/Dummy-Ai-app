@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    
+</head>
+<style>
+  /* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('pic2.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #fff;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 80%;
+    padding: 12px 40px 12px 12px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+}
+
+.input-group .icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.options a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c63ff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #534cc6;
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #6c63ff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+</style>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form>
+                <div class="input-group">
+                    <input type="text" placeholder="Username" required>
+                    <i class="icon user-icon"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="icon lock-icon"></i>
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <p class="register-link">
+                    Don’t have an account? <a href="#">Register</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

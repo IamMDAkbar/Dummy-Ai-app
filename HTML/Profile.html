@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akady Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+        .profile-header img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #ddd;
+        }
+        .profile-header h2 {
+            font-size: 28px;
+            color: #333;
+            margin: 0;
+        }
+        .profile-header .akady-points {
+            font-size: 18px;
+            color: #666;
+            margin: 10px 0;
+        }
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 20px; /* Space between boxes */
+            margin-bottom: 30px;
+        }
+        .profile-detail-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .profile-detail-box p {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+        .profile-detail-box .label {
+            font-weight: bold;
+            color: #333;
+        }
+        .subscription-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: violet;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subscription-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        .subscription-btn:hover {
+            background-color: #8a2be2;
+        }
+        .edit-profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #FFA500;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .edit-profile-btn:hover {
+            background-color: #FFA500;
+        }
+        .profile-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+        .profile-actions button {
+            background-color: #FFA500;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .profile-actions button:hover {
+            background-color: #FFA500;
+        }
+        .link-other-accounts-btn {
+            background-color: #17a2b8;
+        }
+        .link-other-accounts-btn:hover {
+            background-color: #117a8b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <a href="Subscription.html">
+            <button class="subscription-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Simple_crown_icon.svg" alt="Crown Icon">
+                Subscribe
+            </button>
+        </a>
+
+<div class="profile-actions">
+            <a href="Editpf.html">
+                <button class="link-other-accounts-btn">Edit Profile</button>
+            </a>
+            </div>
+
+        <div class="profile-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" alt="User Profile Picture">
+            <h2>MD AKBAR 🗿</h2>
+            <div class="akady-points">Akady Points: +infinite</div>
+        </div>
+
+        <div class="profile-details">
+            <!-- Left Column -->
+            <div class="profile-detail-box">
+                <p><span class="label">Akady Name:</span> Legendary King</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Phone:</span> +1 234 567 890</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Email:</span> akbar.taupheek@akady.com</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Description:</span> Passionate about coding and building innovative web applications. Enjoys solving complex problems and improving user experiences.</p>
+            </div>
+
+            <!-- Right Column -->
+            <div class="profile-detail-box">
+                <p><span class="label">Favorite Language:</span> JavaScript</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Hobby:</span> Solving Puzzles</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Location:</span> San Francisco</p>
+            </div>
+            <div class="profile-detail-box">
+                <p><span class="label">Experience:</span> 5 Years in Web Development</p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="Otherac.html">
+                <button class="link-other-accounts-btn">Link to Other Accounts</button>
+            </a>
+            <a href="LogInterface.html">
+                <button>Logout</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akady - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .header-left i {
+      font-size: 30px;
+      margin-right: 10px;
+    }
+    .header-left p {
+      font-size: 20px;
+      margin: 0;
+    }
+    .search-bar-container {
+      position: relative;
+    
+      width: 45%; /* Increased width */
+    }
+    .search-bar input {
+      width: 120%;
+      padding: 30px; /* Increased padding for larger size */
+      border: none;
+      border-radius: 5px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 20px;
+    }
+    .buttons button {
+      padding: 15px;
+      font-size: 14px;
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 5px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .buttons button i {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    .buttons button:hover {
+      transform: translateY(-5px);
+      background-color: #0056b3;
+    }
+    .post {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 10px 20px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .post-header .user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      object-fit: none;
+    }
+    .post-header .user-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+      
+    }
+    .post-header .user-info .user {
+      font-weight: bold;
+    }
+    .post-body {
+      margin: 15px 0;
+    }
+    .post-images {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+    .post-images img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    footer {
+      display: flex;
+      justify-content: space-around;
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      transition: transform 0.3s ease-in-out;
+    }
+    footer.hidden {
+      transform: translateY(100%);
+    }
+    footer div {
+      text-align: center;
+      cursor: pointer;
+    }
+    .userbtn:hover {
+      
+      border: none;
+      background-color: #92908e;
+      transform: translateY(-1px);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+
+      <p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" style="width: 40px; height: 40px; margin-left: 8px; margin-bottom: -12px;">Akady</p>
+    </div>
+    <div class="search-bar-container">
+      <input type="text" placeholder="Search...">
+    </div>
+  </header>
+
+  <main>
+    <div class="buttons">
+      <button>
+        <i class="fas fa-building"></i> Department
+      </button>
+      <button>
+        <i class="fas fa-file-powerpoint"></i> PPT
+      </button>
+      <button>
+        <i class="fas fa-tasks"></i> Projects
+      </button>
+      <button>
+        <i class="fas fa-print"></i> Print
+      </button>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="user-info">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" alt="User">
+          <span class="user" type="button"><a href="Profile.html"><button class="userbtn">MD AKBAR(DEV)</button></a></span>
+          <span class="time">5 mins ago</span>
+        </div>
+        <span class="options"><i class="fas fa-ellipsis-h"></i></span>
+      </div>
+      <div class="post-body">
+        <p>Description of the post focusing on multiple images below.</p>
+        <div class="post-images">
+          <img src="c:\Akady\pic1.jpg" alt="Image 1">
+          <img src="c:\Akady\pic2.png" alt="Image 2">
+        </div>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="user-info">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" alt="User">
+          <span class="user">MADYPODLE(DEV)</span>
+          <span class="time">10 mins ago</span>
+        </div>
+        <span class="options"><i class="fas fa-ellipsis-h"></i></span>
+      </div>
+      <div class="post-body">
+        <p>Another post description with multiple images below.</p>
+        <div class="post-images">
+          <img src="c:\Akady\pic3.jpg" alt="Image 1">
+          <img src="c:\Akady\pic4.jpg" alt="Image 2">
+        </div>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="user-info">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" alt="User">
+          <span class="user">SARA(DEV)</span>
+          <span class="time">15 mins ago</span>
+        </div>
+        <span class="options"><i class="fas fa-ellipsis-h"></i></span>
+      </div>
+      <div class="post-body">
+        <p>Yet another post description with multiple images below.</p>
+        <div class="post-images">
+          <img src="c:\Akady\pic5.jpg" alt="Image 1">
+          <img src="c:\Akady\pic6.jpg" alt="Image 2">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div>
+      <i class="fas fa-user"></i>
+      <p>Profile</p>
+    </div>
+    <div>
+      <i class="fas fa-upload"></i>
+      <p>Upload</p>
+    </div>
+    <div>
+      <i class="fas fa-home"></i>
+      <p>Home</p>
+    </div>
+    <div>
+      <i class="fas fa-star"></i>
+      <p>Favourites</p>
+    </div>
+    <div>
+      <i class="fas fa-bars"></i>
+      <p>Menu</p>
+    </div>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function () {
+      const footer = document.getElementById('footer');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        footer.classList.add('hidden'); // Hide footer on scroll up
+      } else {
+        footer.classList.remove('hidden'); // Show footer on scroll down
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+</body>
+</html>

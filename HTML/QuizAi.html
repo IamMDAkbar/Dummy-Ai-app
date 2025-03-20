@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz with Gemini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #222;
+            border-radius: 10px;
+            position: relative;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .points-container {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 50px;
+            height: 50px;
+            background-color: #FFD700;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .option-btn:hover {
+            background: #444;
+        }
+        .correct {
+            background-color: #4CAF50 !important;
+        }
+        .wrong {
+            background-color: #D32F2F !important;
+        }
+        .hidden {
+            display: none;
+        }
+        .next-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="points-container">
+            ⭐ <span id="score">0</span>
+        </div>
+        <h1>AI Quiz with APeS</h1>
+        <p class="question">Loading question...</p>
+        <div id="options" class="options"></div>
+        <button id="next-btn" class="next-btn hidden" onclick="getQuestion()">Next Question</button>
+    </div>
+
+    <script>
+        const apiKey = "AIzaSyCybGo8JyqFtDjIX1q7rMSxbss4vck5Bkc";
+        const modelUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        let correctAnswer = "";
+        let score = 0; 
+
+        async function getQuestion() {
+            document.getElementById("next-btn").classList.add("hidden");
+            document.querySelector(".question").innerText = "Loading question...";
+            document.getElementById("options").innerHTML = "";
+
+            const prompt = "Generate an easy multiple-choice quiz question for beginners in general knowledge or basic programming. Format it as follows:\n" +
+                "Question: (your question here)\n" +
+                "Options:\n" +
+                "1. (option 1)\n" +
+                "2. (option 2)\n" +
+                "3. (option 3)\n" +
+                "4. (option 4)\n" +
+                "Answer: (correct option number)";
+
+            const response = await fetch(modelUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+            });
+
+            const data = await response.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Error fetching question.";
+
+            
+            const lines = text.split("\n");
+            const questionText = lines[0].replace("Question:", "").trim();
+            let options = [];
+            let answerIndex = -1;
+
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].startsWith("1.") || lines[i].startsWith("2.") || lines[i].startsWith("3.") || lines[i].startsWith("4.")) {
+                    options.push(lines[i].replace(/^\d+\.\s*/, "").trim());
+                } else if (lines[i].startsWith("Answer:")) {
+                    answerIndex = parseInt(lines[i].replace("Answer:", "").trim()) - 1;
+                }
+            }
+
+            correctAnswer = options[answerIndex];
+
+            
+            document.querySelector(".question").innerText = questionText;
+            const optionsDiv = document.getElementById("options");
+
+            options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.className = "option-btn";
+                button.innerText = option;
+                button.onclick = () => checkAnswer(button, option);
+                optionsDiv.appendChild(button);
+            });
+
+            console.log("Question Loaded:", questionText);
+            console.log("Options:", options);
+            console.log("Correct Answer:", correctAnswer);
+        }
+
+        function checkAnswer(button, selectedOption) {
+            let buttons = document.querySelectorAll(".option-btn");
+            buttons.forEach(btn => btn.disabled = true);
+
+            let correctText = correctAnswer.trim().toLowerCase();
+            let selectedText = selectedOption.trim().toLowerCase();
+
+            if (selectedText === correctText) {
+                button.classList.add("correct");
+                score += 1; 
+                document.getElementById("score").innerText = score;
+            } else {
+                button.classList.add("wrong");
+            }
+
+            
+            buttons.forEach(btn => {
+                if (btn.innerText.trim().toLowerCase() === correctText) {
+                    btn.classList.add("correct");
+                }
+            });
+
+      
+            const nextBtn = document.getElementById("next-btn");
+            nextBtn.style.display = "block";
+            nextBtn.classList.remove("hidden");
+        }
+
+        window.onload = getQuestion;
+    </script>
+</body>
+</html>

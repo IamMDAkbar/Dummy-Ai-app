@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ecc6c6, #98bdd2, #be95a5);
+            animation: gradient-animation 3s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: 500% 500%;
+        }
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }   
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        .signup-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .signup-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        .signup-container input {
+            width: 95%;
+            padding: 9px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6798dc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .signup-container button:hover {
+            background: linear-gradient(45deg, #ecc6c6, #98bdd2, #be95a5);
+        }
+        .signup-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .signup-container p a {
+            color: #6798dc;
+            text-decoration: none;
+        }
+        .signup-container p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up to<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" style="width: 40px; height: 40px; margin-left: 10px; margin-bottom: -11px;"></h2>
+        <form id="signupForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your Phone Number" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="LogInterface.html">Log In</a></p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+            } else {
+
+                localStorage.setItem("userName", name);
+                localStorage.setItem("userPhoneNumber", phoneNumber);
+                localStorage.setItem("userPassword", password);
+
+                window.location.href = "Verify.html";
+            }
+        });
+    </script>
+</body>
+</html>

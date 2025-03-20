@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .verification-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+        }
+        .verification-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .verification-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .verification-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .verification-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .verification-container button:hover {
+            background-color: #0056b3;
+        }
+        .verification-container .note {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <h2>Number Verification</h2>
+        <p id="phone-display"></p>
+        <form id="verifyForm">
+            <label for="otp">Enter OTP (One-Time Password)</label>
+            <input type="number" id="otp" name="otp" placeholder="Enter 6-digit OTP" required>
+            
+            <button type="submit">Verify</button>
+        </form>
+        <p class="note">Didn't receive OTP? <a href="#">Resend</a></p>
+    </div>
+
+    <script>
+        // Retrieve the phone number from localStorage
+        const phoneNumber = localStorage.getItem("phoneNumber");
+        const phoneDisplay = document.getElementById("phone-display");
+
+        // Display the phone number or redirect if not found
+        if (phoneNumber) {
+            phoneDisplay.textContent = `OTP sent to: ${phoneNumber}`;
+        } else {
+            alert("No phone number found. Redirecting to Sign Up page.");
+            window.location.href = "Number.html";
+        }
+
+        // OTP verification logic
+        document.getElementById("verifyForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            const enteredOtp = document.getElementById("otp").value;
+            const validOtp = "123456"; // Example OTP for simulation
+
+            if (enteredOtp === validOtp) {
+                alert("Number verified successfully!");
+                // Redirect or perform further actions
+                window.location.href = "success.html";
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .verification-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+        }
+        .verification-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .verification-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .verification-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .verification-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .verification-container button:hover {
+            background-color: #0056b3;
+        }
+        .verification-container .note {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <h2>Number Verification</h2>
+        <p id="phone-display"></p>
+        <form id="verifyForm">
+            <label for="otp">Enter OTP (One-Time Password)</label>
+            <input type="number" id="otp" name="otp" placeholder="Enter 6-digit OTP" required>
+            
+            <button type="submit">Verify</button>
+        </form>
+        <p class="note">Didn't receive OTP? <a href="#">Resend</a></p>
+    </div>
+
+    <script>
+        // Retrieve the phone number from localStorage
+        const phoneNumber = localStorage.getItem("phoneNumber");
+        const phoneDisplay = document.getElementById("phone-display");
+
+        // Display the phone number or redirect if not found
+        if (phoneNumber) {
+            phoneDisplay.textContent = `OTP sent to: ${phoneNumber}`;
+        } else {
+            alert("No phone number found. Redirecting to Sign Up page.");
+            window.location.href = "Number.html";
+        }
+
+        // OTP verification logic
+        document.getElementById("verifyForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            const enteredOtp = document.getElementById("otp").value;
+            const validOtp = "123456"; // Example OTP for simulation
+
+            if (enteredOtp === validOtp) {
+                alert("Number verified successfully!");
+                // Redirect or perform further actions
+                window.location.href = "success.html";
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>DOCTYPE

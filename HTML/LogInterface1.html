@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up to Akady</title>
+    <script src="Login.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFA500;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        .login-container h2 {
+            margin: 0 0 15px;
+            text-align: center;
+        }
+        .login-container label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 6px;
+            margin-right: 1px;
+            margin-left: 1px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-container button:hover {
+            background-color: #7f7d78;
+        }
+        .login-container .signup {
+            text-align: center;
+            margin-top: 15px;
+           
+        }
+        .login-container .Forgot {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .login-container .Forgot a {
+            color: #FFA500;
+            text-decoration: none;
+        }
+            
+        .login-container .signup a {
+            color: #FFA500;
+        }
+ 
+        .hero .btn {
+      background: #FFA500;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+       .button-container {
+            display: flex;
+            justify-content: ccenter
+             10px;
+        }
+        button {
+            margin: 5px; 
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Akady<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" style="width: 40px; height: 40px; margin-left: 10px; margin-bottom: -11px;"></h2>
+          <form id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+       
+            <button style="
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"
+             type="submit">Login</button>
+             </form>
+        </form>
+        <div style="
+        color: red;" 
+        <center><p>Invalid Username or Password.Try again.</p></center></div>
+        <div class="Forgot">
+            <a href="Frgtpass.html" type="#">Forgot Password?</a>
+        <div class="signup">
+            <p>Don't have an account? <a href="Signup.html">Sign Up</a></p>
+            <h><b>-OR-</b></h>
+            <div style="text-align: center; margin-top: 20px;">
+  <div class="button-container">
+    <button style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #FFA500;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    " onclick="googleLogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" style="width: 20px; height: 20px; margin-right: 10px;">
+        
+    </button>
+    <h1>                    </h1>
+    <button style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #FFA500;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    " onclick="FacebookLogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" style="width: 20px; height: 20px; margin-right: 10px;">
+    </button>
+    <h1>   </h1>
+    <button style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        background-color: #FFA500;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    " onclick="Xlogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/X_logo.jpg" style="width: 20px; height: 20px; margin-right: 10px;">
+    </button>
+    </div>
+</div>
+            
+        </div>
+    </div>
+</body>
+</html>

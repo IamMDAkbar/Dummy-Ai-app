@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Number</title>
+</head>
+<body>
+    <h2>Number Verification</h2>
+    <p id="verificationMessage"></p>
+    <form id="verifyForm">
+        <input type="text" id="otp" placeholder="Enter OTP" required>
+        <button type="submit">Verify</button>
+    </form>
+
+    <script>
+        // Retrieve phone number from localStorage
+        const phoneNumber = localStorage.getItem("phoneNumber");
+        if (phoneNumber) {
+            document.getElementById("verificationMessage").textContent = 
+                `We have sent an OTP to ${phoneNumber}`;
+        } else {
+            alert("No phone number found. Redirecting to Sign Up page.");
+            window.location.href = "Number.html";
+        }
+
+        // OTP verification simulation
+        document.getElementById("verifyForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            const enteredOtp = document.getElementById("otp").value;
+            const validOtp = "1234"; // Example OTP for simulation
+
+            if (enteredOtp === validOtp) {
+                alert("Number verified successfully!");
+                // Redirect or perform other actions
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

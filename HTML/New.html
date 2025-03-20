@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up to Akady</title>
+    <script src="c:\Akady\JavaScript\Login.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+
+      
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .options input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 2px solid rgba(108, 99, 255, 0.8);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .options input[type="checkbox"]:checked {
+            background-color: rgba(108, 99, 255, 0.8);
+            border-color: rgba(108, 99, 255, 0.8);
+        }
+
+        .options input[type="checkbox"]:checked::before {
+            content: "✔";
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 1px;
+            left: 3px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .login-btn:hover {
+            background-color: #5b52cc;
+        }
+
+        .forgot-link,
+        .register-link {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .forgot-link a,
+        .register-link a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        .forgot-link a:hover,
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .social-buttons button {
+            width: 30%;
+            padding: 10px;
+            background: rgba(108, 99, 255, 0.2);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-buttons button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-buttons button:hover {
+            background: rgba(108, 99, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="c:\Akady\SampleVideos\sample6.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    
+    <div class="login-container">
+        <h2>Login to Akady<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Letter_A_icon.svg" style="width: 40px; height: 40px; margin-left: 10px; margin-bottom: -11px;"></h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="options">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember me</label>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <div class="forgot-link">
+                <a href="Frgtpass.html">Forgot Password?</a>
+            </div>
+            <div class="register-link">
+                Don’t have an account? <a href="Signup.html">Register</a>
+            </div>
+        </form>
+        <div class="social-buttons">
+            <button onclick="googleLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg">
+            </button>
+            <button onclick="facebookLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
+            </button>
+            <button onclick="xLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/X_logo.jpg">
+            </button>
+        </div>
+    </div>
+</body>
+</html>

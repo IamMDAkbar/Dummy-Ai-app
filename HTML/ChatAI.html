@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API Prompt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background-color: #222;
+            color: white;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 5px;
+            text-align: left;
+            white-space: pre-wrap;
+            font-size: 16px;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background-color: #777;
+        }
+        pre {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gemini API - AI Prompt</h1>
+    <textarea id="userPrompt" placeholder="Enter your prompt here..."></textarea>
+    <br>
+    <button onclick="sendPrompt()">Submit</button>
+    <p id="loading" style="display: none; color: #ff9800;">Generating response...</p>
+    <div id="responseContainer"></div>
+
+    <script>
+        async function sendPrompt() {
+            const prompt = document.getElementById("userPrompt").value;
+            const responseContainer = document.getElementById("responseContainer");
+            const loadingText = document.getElementById("loading");
+
+            if (!prompt) {
+                alert("Please enter a prompt!");
+                return;
+            }
+
+            loadingText.style.display = "block";
+
+            const apiKey = "AIzaSyCybGo8JyqFtDjIX1q7rMSxbss4vck5Bkc";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=` + apiKey;
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                const data = await response.json();
+                loadingText.style.display = "none";
+
+                if (data && data.candidates && data.candidates.length > 0) {
+                    let responseText = data.candidates[0].content.parts[0].text;
+
+                    // Preserve formatting (headings, bold, code blocks)
+                    responseText = responseText
+                        .replace(/\n/g, "<br>")                      // Preserve new lines
+                        .replace(/([\s\S]*?)/g, "<pre>$1</pre>") // Format code blocks
+                        .replace(/\\\(.?)\\\*/g, "<b>$1</b>")   // Bold text
+                        .replace(/##### (.*?)<br>/g, "<h5>$1</h5>")   // H5
+                        .replace(/#### (.*?)<br>/g, "<h4>$1</h4>")    // H4
+                        .replace(/### (.*?)<br>/g, "<h3>$1</h3>")     // H3
+                        .replace(/## (.*?)<br>/g, "<h2>$1</h2>")      // H2
+                        .replace(/# (.*?)<br>/g, "<h1>$1</h1>");      // H1
+
+                    // Create a new response container for each response
+                    const responseDiv = document.createElement("div");
+                    responseDiv.classList.add("response-container");
+                    responseDiv.innerHTML = "<strong>Response:</strong><br>" + responseText;
+
+                    // Add copy button
+                    const copyButton = document.createElement("button");
+                    copyButton.innerText = "Copy";
+                    copyButton.classList.add("copy-btn");
+                    copyButton.onclick = () => copyToClipboard(responseText);
+                    responseDiv.appendChild(copyButton);
+
+                    responseContainer.prepend(responseDiv); // Add new response at the top
+                } else {
+                    alert("Error: No response received.");
+                }
+
+            } catch (error) {
+                loadingText.style.display = "none";
+                alert("Error: Unable to fetch response.");
+                console.error(error);
+            }
+        }
+
+        function copyToClipboard(text) {
+            const tempElement = document.createElement("textarea");
+            tempElement.value = text.replace(/<br>/g, "\n").replace(/<[^>]+>/g, ""); // Convert HTML back to plain text
+            document.body.appendChild(tempElement);
+            tempElement.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempElement);
+            alert("Copied to clipboard!");
+        }
+    </script>
+
+</body>
+</html>
